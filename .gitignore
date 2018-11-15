@@ -17,3 +17,8 @@ public/upload
 coverage
 .idea
 package-lock.json
+
+config.json
+custom.json
+settings.json
+users.json
