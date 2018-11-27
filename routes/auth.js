@@ -60,8 +60,8 @@ exports.login = function (req, res) {
             // or in this case the entire user object
             req.session.user = user;
             console.log('>>>>>>>>>>>>>>>>>> in req.session.regenerate', req.session)
-            console.log('>>>>>>>>>>>>>>>>>> in res.locals.root', res.session)
-            res.redirect(res.locals.root+'/');
+            console.log('>>>>>>>>>>>>>>>>>> in res.locals.root', res.locals.root)
+            res.redirect(res.locals.root);
         });
     });
 }
