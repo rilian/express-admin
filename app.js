@@ -199,7 +199,7 @@ function initServer (args) {
         .use(bodyParser.urlencoded({extended: true}))
         .use(multipart())
 
-        .use(cookieParser())
+        // .use(cookieParser())
         .use(args.session || session({name: 'express-admin', secret: 'very secret - required',
                         saveUninitialized: true, resave: true}))
         // .use(r.auth.status)// session middleware
