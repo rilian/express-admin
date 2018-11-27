@@ -21,10 +21,10 @@ exports.restrict = function (req, res, next) {
     }
 
     if (req.session.user) {
-      console.log('>>>>>>>>>>>>>> user found: ' req.session.user)
+      console.log('>>>>>>>>>>>>>> user found: ', req.session.user)
       return next();
     }
-    console.log('>>>>>>>>>>>>>> user not found: ' req.session.user)
+    console.log('>>>>>>>>>>>>>> user not found: ', req.session.user)
     req.session.error = res.locals.string['access-denied'];
     res.redirect(res.locals.root+'/login');
 }
