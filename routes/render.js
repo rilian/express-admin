@@ -9,7 +9,7 @@ exports.admin = function (req, res) {
     res.render('base', {
         
         user: req.session.user,
-        csrf: req.csrfToken(),
+        // csrf: req.csrfToken(),
 
         url: {
             home: '/'

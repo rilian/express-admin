@@ -203,7 +203,7 @@ function initServer (args) {
         // .use(args.session || session({name: 'express-admin', secret: 'very secret - required',
         //                 saveUninitialized: true, resave: false}))
         // .use(r.auth.status)// session middleware
-        .use(csrf())
+        // .use(csrf())
 
         .use(methodOverride())
         .use(serveStatic(path.join(__dirname, 'public')))
