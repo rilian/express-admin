@@ -12,6 +12,7 @@ var express = require('express'),
     multipart = require('connect-multiparty'),
     cookieParser = require('cookie-parser'),
     session = require('express-session'),
+    cookieSession = require('cookie-session')
     csrf = require('csurf'),
     methodOverride = require('method-override'),
     serveStatic = require('serve-static'),
@@ -200,8 +201,7 @@ function initServer (args) {
         .use(multipart())
 
         .use(cookieParser())
-        .use(args.session || session({name: 'express-admin', secret: 'very secret - required',
-                        saveUninitialized: true, resave: false}))
+        .use(args.session || cookieSession({name: 'express-admin', secret: 'very secret - required'}))
         .use(r.auth.status)// session middleware
         .use(csrf())
 
