@@ -202,7 +202,7 @@ function initServer (args) {
         .use(cookieParser())
         .use(args.session || session({name: 'express-admin', secret: 'very secret - required',
                         saveUninitialized: true, resave: true}))
-        .use(r.auth.status)// session middleware
+        // .use(r.auth.status)// session middleware
         // .use(csrf())
 
         .use(methodOverride())
