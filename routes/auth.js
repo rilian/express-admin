@@ -23,9 +23,11 @@ exports.restrict = function (req, res, next) {
 }
 
 exports.login = function (req, res) {
+  console.log('>>>>>>>>>>>>>>>> in routes/auth.login')
     // query the db for the given username
     var user = res.locals._admin.users[req.body.username];
     if (!user) {
+        console.log('>>>>>>>>>>>>>>>>>>>> why no user?')
         req.session.error = res.locals.string['find-user'];
         req.session.username = req.body.username;
         res.redirect(res.locals.root+'/login');
@@ -46,6 +48,7 @@ exports.login = function (req, res) {
         // Regenerate session when signing in
         // to prevent fixation
         req.session.regenerate(function (err) {
+            console.log('>>>>>>>>>>>>>>>>>> in req.session.regenerate', req.session)
             // Store the user's primary key
             // in the session store to be retrieved,
             // or in this case the entire user object
@@ -56,6 +59,7 @@ exports.login = function (req, res) {
 }
 
 exports.logout = function (req, res) {
+  console.log('>>>>>>>>>>>>>>>>>> in routes/auth.logout')
     // destroy the user's session to log them out
     // will be re-created next request
     req.session.destroy(function () {
