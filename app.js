@@ -200,9 +200,9 @@ function initServer (args) {
         .use(multipart())
 
         .use(cookieParser())
-        .use(args.session || session({name: 'express-admin', secret: 'very secret - required',
-                        saveUninitialized: false, resave: false}))
-        .use(r.auth.status)// session middleware
+        // .use(args.session || session({name: 'express-admin', secret: 'very secret - required',
+        //                 saveUninitialized: true, resave: false}))
+        // .use(r.auth.status)// session middleware
         .use(csrf())
 
         .use(methodOverride())
