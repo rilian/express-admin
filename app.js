@@ -201,7 +201,8 @@ function initServer (args) {
         .use(multipart())
 
         .use(cookieParser())
-        .use(args.session || cookieSession({name: 'express-admin', secret: 'very secret - required'}))
+        .use(args.session || session({name: 'express-admin', secret: 'very secret - required',
+                        saveUninitialized: true, resave: false}))
         .use(r.auth.status)// session middleware
         .use(csrf())
 
@@ -265,27 +266,27 @@ function initServer (args) {
                 have = true;
             }
         }
-        if (have && _routes.custom) app.all(_routes.custom, r.auth.restrict, r.render.admin);
+        if (have && _routes.custom) app.all(_routes.custom, r.render.admin);
     }());
 
     // login/logout
-    app.get('/login', r.login.get, r.render.admin);
-    app.post('/login', r.auth.login);
-    app.get('/logout', r.auth.logout);
+    // app.get('/login', r.login.get, r.render.admin);
+    // app.post('/login', r.auth.login);
+    // app.get('/logout', r.auth.logout);
 
     // editview
-    app.get(_routes.editview, r.auth.restrict, r.editview.get, r.render.admin);
-    app.post(_routes.editview, r.auth.restrict, r.editview.post, r.render.admin);
+    app.get(_routes.editview, r.editview.get, r.render.admin);
+    app.post(_routes.editview, r.editview.post, r.render.admin);
 
     // listview
-    app.get(_routes.listview, r.auth.restrict, r.listview.get, r.render.admin);
-    app.post(_routes.listview, r.auth.restrict, r.listview.post, r.render.admin);
+    app.get(_routes.listview, r.listview.get, r.render.admin);
+    app.post(_routes.listview, r.listview.post, r.render.admin);
 
     // mainview
-    app.get(_routes.mainview, r.auth.restrict, r.mainview.get, r.render.admin);
+    app.get(_routes.mainview, r.mainview.get, r.render.admin);
 
     // not found
-    app.all('*', r.auth.restrict, r.notfound.get, r.render.admin);
+    app.all('*', r.notfound.get, r.render.admin);
 
     return app;
 }
