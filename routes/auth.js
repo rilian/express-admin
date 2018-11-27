@@ -15,9 +15,16 @@ exports.status = function (req, res, next) {
 }
 
 exports.restrict = function (req, res, next) {
-    if (res.locals._admin.debug) return next();
+    if (res.locals._admin.debug) {
+      console.log('>>>>>>>>>>>>>> user is admin')
+      return next();
+    }
 
-    if (req.session.user) return next();
+    if (req.session.user) {
+      console.log('>>>>>>>>>>>>>> user found: ' req.session.user)
+      return next();
+    }
+    console.log('>>>>>>>>>>>>>> user not found: ' req.session.user)
     req.session.error = res.locals.string['access-denied'];
     res.redirect(res.locals.root+'/login');
 }
@@ -48,11 +55,12 @@ exports.login = function (req, res) {
         // Regenerate session when signing in
         // to prevent fixation
         req.session.regenerate(function (err) {
-            console.log('>>>>>>>>>>>>>>>>>> in req.session.regenerate', req.session)
             // Store the user's primary key
             // in the session store to be retrieved,
             // or in this case the entire user object
             req.session.user = user;
+            console.log('>>>>>>>>>>>>>>>>>> in req.session.regenerate', req.session)
+            console.log('>>>>>>>>>>>>>>>>>> in res.locals.root', res.session)
             res.redirect(res.locals.root+'/');
         });
     });
