@@ -26,8 +26,8 @@ exports.restrict = function (req, res, next) {
     }
     console.log('>>>>>>>>>>>>>> user not found: ', req.session.user)
     req.session.error = res.locals.string['access-denied'];
-    // res.redirect(res.locals.root+'/login');
-    res.redirect(res.locals.root);
+    res.redirect(res.locals.root+'/login');
+    // res.redirect(res.locals.root);
 }
 
 exports.login = function (req, res) {
@@ -38,8 +38,8 @@ exports.login = function (req, res) {
         console.log('>>>>>>>>>>>>>>>>>>>> why no user?')
         req.session.error = res.locals.string['find-user'];
         req.session.username = req.body.username;
-        // res.redirect(res.locals.root+'/login');
-        res.redirect(res.locals.root);
+        res.redirect(res.locals.root+'/login');
+        // res.redirect(res.locals.root);
         return;
     }
 
@@ -50,8 +50,8 @@ exports.login = function (req, res) {
         if (hash !== user.hash) {
             req.session.error = res.locals.string['invalid-password'];
             req.session.username = req.body.username;
-            // res.redirect(res.locals.root+'/login');
-            res.redirect(res.locals.root);
+            res.redirect(res.locals.root+'/login');
+            // res.redirect(res.locals.root);
             return;
         }
         req.session.user = user
