@@ -1,6 +1,6 @@
 {
     "name": "express-admin-better-defaults",
-    "version": "1.6.14",
+    "version": "1.7.0",
     "description": "MySql, MariaDB, SQLite and PostgreSQL database admin built with Express and Bootstrap",
     "keywords": [
         "mysql",
