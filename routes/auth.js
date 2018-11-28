@@ -16,26 +16,26 @@ exports.status = function (req, res, next) {
 
 exports.restrict = function (req, res, next) {
     if (res.locals._admin.debug) {
-      console.log('>>>>>>>>>>>>>> user is admin')
+      // console.log('>>>>>>>>>>>>>> user is admin')
       return next();
     }
 
     if (req.session.user) {
-      console.log('>>>>>>>>>>>>>> user found: ', req.session.user)
+      // console.log('>>>>>>>>>>>>>> user found: ', req.session.user)
       return next();
     }
-    console.log('>>>>>>>>>>>>>> user not found: ', req.session.user)
+    // console.log('>>>>>>>>>>>>>> user not found: ', req.session.user)
     req.session.error = res.locals.string['access-denied'];
     res.redirect(res.locals.root+'/login');
     // res.redirect(res.locals.root);
 }
 
 exports.login = function (req, res) {
-  console.log('>>>>>>>>>>>>>>>> in routes/auth.login')
+  // console.log('>>>>>>>>>>>>>>>> in routes/auth.login')
     // query the db for the given username
     var user = res.locals._admin.users[req.body.username];
     if (!user) {
-        console.log('>>>>>>>>>>>>>>>>>>>> why no user?')
+        // console.log('>>>>>>>>>>>>>>>>>>>> why no user?')
         req.session.error = res.locals.string['find-user'];
         req.session.username = req.body.username;
         res.redirect(res.locals.root+'/login');
@@ -55,7 +55,7 @@ exports.login = function (req, res) {
             return;
         }
         req.session.user = user
-        console.log('>>>>>>>>>>>> creating user on session cookie: ', req.session.user)
+        // console.log('>>>>>>>>>>>> creating user on session cookie: ', req.session.user)
         res.redirect(res.locals.root);
         // Regenerate session when signing in
         // to prevent fixation
@@ -72,7 +72,7 @@ exports.login = function (req, res) {
 }
 
 exports.logout = function (req, res) {
-  console.log('>>>>>>>>>>>>>>>>>> in routes/auth.logout')
+  // console.log('>>>>>>>>>>>>>>>>>> in routes/auth.logout')
     // destroy the user's session to log them out
     // will be re-created next request
     // req.session.destroy(function () {
