@@ -51,18 +51,20 @@ exports.login = function (req, res) {
             res.redirect(res.locals.root+'/login');
             return;
         }
-
+        req.session.user = user
+        console.log('>>>>>>>>>>>> creating user on session cookie: ', req.session.user)
+        res.redirect(res.locals.root);
         // Regenerate session when signing in
         // to prevent fixation
-        req.session.regenerate(function (err) {
-            // Store the user's primary key
-            // in the session store to be retrieved,
-            // or in this case the entire user object
-            req.session.user = user;
-            console.log('>>>>>>>>>>>>>>>>>> in req.session.regenerate', req.session)
-            console.log('>>>>>>>>>>>>>>>>>> in res.locals.root', res.locals.root)
-            res.redirect(res.locals.root);
-        });
+        // req.session.regenerate(function (err) {
+        //     // Store the user's primary key
+        //     // in the session store to be retrieved,
+        //     // or in this case the entire user object
+        //     req.session.user = user;
+        //     console.log('>>>>>>>>>>>>>>>>>> in req.session.regenerate', req.session)
+        //     console.log('>>>>>>>>>>>>>>>>>> in res.locals.root', res.locals.root)
+        //     res.redirect(res.locals.root);
+        // });
     });
 }
 
@@ -70,8 +72,10 @@ exports.logout = function (req, res) {
   console.log('>>>>>>>>>>>>>>>>>> in routes/auth.logout')
     // destroy the user's session to log them out
     // will be re-created next request
-    req.session.destroy(function () {
-        // successfully logged out
-        res.redirect(res.locals.root+'/login');
-    });
+    // req.session.destroy(function () {
+    //     // successfully logged out
+    //     res.redirect(res.locals.root+'/login');
+    // });
+    req.session = null
+    res.redirect(res.locals.root+'/login')
 }
