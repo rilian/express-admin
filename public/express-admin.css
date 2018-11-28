@@ -12,6 +12,10 @@
 }
 .container-fluid { width: auto; max-width: none; }
 
+/*Stefan: get rid of giant left side margin*/
+/*TODO: more elegant solution*/
+.container { margin-left: 0px !important }
+
 /*hide chosen select by default*/
 .chosen-select { display: none; }
 
