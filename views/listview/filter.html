@@ -15,7 +15,7 @@
                     <td>
                         <div class="form-group">
                             {{#row}}
-                                {{>column}}
+                                {{> column}}
                             {{/row}}
                         </div>
                     </td>
@@ -44,8 +44,9 @@
                 {{/direction}}
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3">
-                <button type="submit" class="btn btn-default form-control" name="action[filter]">{{string.filter}}</button>
-                <button type="submit" class="btn btn-default form-control" name="action[clear]">{{string.clear}}</button>
+              <!-- STEFAN: action and value are a key: value pair -->
+                <button type="submit" class="btn btn-default form-control" name="action" value="filter">{{string.filter}}</button>
+                <button type="submit" class="btn btn-default form-control" name="action" value="clear">{{string.clear}}</button>
             </div>
         </div>
     </div>
