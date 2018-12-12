@@ -8,3 +8,6 @@ exports.listview = require('./listview');
 exports.editview = require('./editview');
 
 exports.render   = require('./render');
+
+// STEFAN: add filter middle ware to correct filter data on the req body.
+exports.filter = require('./filter');
