@@ -280,8 +280,10 @@ function initServer (args) {
     app.post(_routes.editview, r.auth.restrict, r.editview.post, r.render.admin);
 
     // listview
+    // STEFAN: what is '_routes.listview'? Where is this filter object being constructed?
+    // console.log('>>>>>>>>>> _routes.listview: ', _routes.listview)
     app.get(_routes.listview, r.auth.restrict, r.listview.get, r.render.admin);
-    app.post(_routes.listview, r.auth.restrict, r.listview.post, r.render.admin);
+    app.post(_routes.listview, r.auth.restrict, r.filter.hotfix, r.listview.post, r.render.admin);
 
     // mainview
     app.get(_routes.mainview, r.auth.restrict, r.mainview.get, r.render.admin);

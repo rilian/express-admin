@@ -12,7 +12,7 @@
 }
 .container-fluid { width: auto; max-width: none; }
 
-/*Stefan: get rid of giant left side margin*/
+/*STEFAN: get rid of giant left side margin*/
 /*TODO: more elegant solution*/
 .container { margin-left: 0px !important }
 
@@ -21,7 +21,7 @@
 
 /*fix table size and content*/
 
-/* Stefan: allow horizontal scrolling for large tables */
+/* STEFAN: allow horizontal scrolling for large tables */
 /* .x-table { table-layout: fixed; } */
 
 .x-table thead th,
