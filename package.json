@@ -1,6 +1,6 @@
 {
     "name": "express-admin-better-defaults",
-    "version": "1.8.0",
+    "version": "1.8.1",
     "description": "MySql, MariaDB, SQLite and PostgreSQL database admin built with Express and Bootstrap",
     "keywords": [
         "mysql",
@@ -17,7 +17,7 @@
     "author": "Simeon Velichkov <simeonvelichkov@gmail.com> (https://simov.github.io)",
     "repository": {
         "type": "git",
-        "url": "https://github.com/simov/express-admin.git"
+        "url": "https://github.com/stefanough/express-admin-better-defaults.git"
     },
     "dependencies": {
         "async": "^0.9.2",
