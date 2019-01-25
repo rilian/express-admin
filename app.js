@@ -232,6 +232,14 @@ function initServer (args) {
         // app data
         res.locals._admin = args;
 
+        // personal settings.json
+        if (req.session != null 
+            && req.session.user 
+            && req.session.user.dir != null
+            && req.session.user.dir.length > 0) {
+            res.locals._admin.settings = require(path.join(args.dpath, req.session.user.dir, 'settings.json'));
+        }
+        
         // i18n
         var lang = req.cookies.lang || 'en';
         res.cookie('lang', lang, {path: '/', maxAge: 900000000});

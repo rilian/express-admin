@@ -1,3 +1,31 @@
+# [What's new updates from simov/express-admin]
+
+[2019-01-22] Multiple users login with different tables access right
+
+users.json
+```
+{
+  "user1": {
+      "name": "user1",
+      "admin": true,
+      "salt": "...",
+      "hash": "...",
+      "dir": "userA"
+  },
+  "user2": {
+      "name": "user2",
+      "admin": true,
+      "salt": "...",
+      "hash": "...",
+      "dir": "userB"
+  },
+}
+```
+
+- Create `userA` and `userB` folder in users.json directory level.
+- Create `settings.json` file into `userA` and `userB` folders.
+
+---
 Express Admin with better defaults. Don't edit your IDs or TimeStamps!
 
 ![img-screenshot]
