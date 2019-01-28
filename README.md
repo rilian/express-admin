@@ -1,4 +1,4 @@
-# [What's new updates from simov/express-admin]
+# [What's new updates]
 
 [2019-01-22] Multiple users login with different tables access right
 
