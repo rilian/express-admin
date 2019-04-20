@@ -274,10 +274,13 @@ function initServer (args) {
         var have = false;
         for (var key in args.custom) {
             var _app = args.custom[key].app;
-            if (_app && _app.path && fs.existsSync(_app.path)) {
-                var view = require(_app.path);
-                app.use(view);
-                have = true;
+            if (_app && _app.path) {
+                let fullPath = path.join(args.dpath, _app.path);
+                if (fs.existsSync(fullPath)) {
+                    var view = require(fullPath);
+                    app.use(view);
+                    have = true;
+                }
             }
         }
         if (have && _routes.custom) app.all(_routes.custom, r.auth.restrict, r.render.admin);
