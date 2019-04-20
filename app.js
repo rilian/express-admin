@@ -237,7 +237,12 @@ function initServer (args) {
             && req.session.user 
             && req.session.user.dir != null
             && req.session.user.dir.length > 0) {
-            res.locals._admin.settings = require(path.join(args.dpath, req.session.user.dir, 'settings.json'));
+
+            // settings
+            const user_settings = path.join(args.dpath, req.session.user.dir, 'settings.json');
+            if (fs.existsSync(user_settings)) {
+                res.locals._admin.settings = require(user_settings);
+            }
         }
         
         // i18n
