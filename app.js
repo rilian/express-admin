@@ -222,9 +222,11 @@ function initServer (args) {
     // register custom static local paths
     for (var key in args.custom) {
         var assets = args.custom[key].public;
-        if (!assets || !assets.local || !assets.local.path ||
-            !fs.existsSync(assets.local.path)) continue;
-        app.use(serveStatic(assets.local.path));
+        if (!assets || !assets.local || !assets.local.path ) continue;
+
+        var fullPath = path.join(args.dpath, assets.local.path);
+        if (!fs.existsSync(fullPath)) continue;
+        app.use(serveStatic(fullPath));
     }
 
     // pass server wide variables

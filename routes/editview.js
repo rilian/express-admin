@@ -46,7 +46,7 @@ exports.post = function (req, res, next) {
 
     editview.getTypes(args, function (err, data) {
         // console.log('see finsihed, ', data.view.tables[0].records[0].columns);
-        // console.log('see finsihed2, ', args.data.view.article_category.records[0].columns);
+        // console.log('see finsihed2, ', args.data.view.article.records[0].columns);
         if (err) return next(err);
 
         // put valid formatted data to args
@@ -58,7 +58,16 @@ exports.post = function (req, res, next) {
                     const argsRec = argsRecords[idx];   // records of args and data should be same array length
                     const recordFromData = table.records[idx];
                     for (const col of recordFromData.columns) {
-                        argsRec.columns[col.name] = col.value;
+                        if (col.control.select === true) {
+                            for (const opt of col.value) {
+                                if (opt.selected === true) {
+                                    argsRec.columns[col.name] = opt.__pk;
+                                    break;
+                                }
+                            }
+                        } else {
+                            argsRec.columns[col.name] = col.value;
+                        }
                     }
                 }
             }
