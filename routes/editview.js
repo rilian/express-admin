@@ -45,7 +45,24 @@ exports.post = function (req, res, next) {
         events = res.locals._admin.events;
 
     editview.getTypes(args, function (err, data) {
+        // console.log('see finsihed, ', data.view.tables[0].records[0].columns);
+        // console.log('see finsihed2, ', args.data.view.article_category.records[0].columns);
         if (err) return next(err);
+
+        // put valid formatted data to args
+        if (data != null && data.view != null && data.view.tables != null) {
+            for (const table of data.view.tables) {
+                const tableName = table.name;
+                const argsRecords = args.data.view[tableName].records;
+                for (let idx = 0; idx < table.records.length; idx++) {
+                    const argsRec = argsRecords[idx];   // records of args and data should be same array length
+                    const recordFromData = table.records[idx];
+                    for (const col of recordFromData.columns) {
+                        argsRec.columns[col.name] = col.value;
+                    }
+                }
+            }
+        }
 
         var view = req.body.view,
             table = Object.keys(view)[0];
