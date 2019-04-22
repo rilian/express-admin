@@ -30,6 +30,7 @@ exports.upload = function ({args, file, type, target, data, fname, cb}) {
 }
 
 ```
+For `cb` function, 1st argument is error object, 2nd argument is value will store into database. (you may put a image link if you use third party file server)
 
 [2019-01-22] Multiple users login with different tables access right
 
