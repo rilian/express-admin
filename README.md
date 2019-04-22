@@ -1,4 +1,35 @@
 # [What's new updates]
+[2019-04-22] support external upload file adapter (e.g. custom AWS S3 adapter)
+
+settings.json
+```
+
+"control": {
+    "file": true,
+    "useUploadAdapter": true
+}
+
+```
+
+custom.json
+```
+"adapters": {
+  "uploadAdapter": "/src/uploadAdapter.js"
+}
+
+```
+
+/src/uploadAdapter.js
+```
+
+exports.upload = function ({args, file, type, target, data, fname, cb}) {
+    console.log('args.name: ', args.name)
+    console.log('data: ', data)
+    console.log('fname: ', fname)
+    cb(null, fname);
+}
+
+```
 
 [2019-01-22] Multiple users login with different tables access right
 
