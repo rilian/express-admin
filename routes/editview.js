@@ -5,7 +5,7 @@ var editview = require('../lib/editview/index'),
     database = require('../lib/db/update');
 
 
-function getArgs (req, res) {
+function getArgs (req, res) {    
     var args = {
         settings : res.locals._admin.settings,
         db       : res.locals._admin.db,
@@ -15,7 +15,9 @@ function getArgs (req, res) {
         id       : req.params[1] == 'add' ? null : req.params[1].split(','),
         data     : req.body,
         upload   : req.files,
-        upath    : res.locals._admin.config.app.upload
+        upath    : res.locals._admin.config.app.upload,
+        custom: res.locals._admin.custom,
+        dpath: res.locals._admin.dpath
     };
     args.name = res.locals._admin.slugs[args.slug];
     return args;
