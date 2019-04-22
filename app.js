@@ -135,7 +135,13 @@ function initSettings (args) {
         var fpath = args.custom[key].events;
         if (fpath) break;
     }
-    var events = fpath ? require(fpath) : {};
+    var events = {};
+    if (fpath) {
+        var fullPath = path.join(args.dpath, fpath);
+        if (fs.existsSync(fullPath)) {
+            events = require(fullPath);
+        }
+    }
     if (!events.hasOwnProperty('preSave'))
         events.preSave = function (req, res, args, next) {next()};
     if (!events.hasOwnProperty('postSave'))
