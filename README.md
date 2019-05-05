@@ -1,4 +1,10 @@
 # [What's new updates]
+[2019-05-05] add preListData and preEditView for events
+
+preListData is called before getting data
+
+preEditView is called after getting data and before render to screen 
+
 [2019-04-22] support external upload file adapter (e.g. custom AWS S3 adapter)
 
 settings.json

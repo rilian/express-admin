@@ -64,7 +64,8 @@ function _data (req, res, next) {
                 data.stc.get(args);
                 done();
             });
-        }
+        },
+        events.preListData.bind(events, req, res, args, results)
     ], function (err) {
         if (err) return next(err);
         render(

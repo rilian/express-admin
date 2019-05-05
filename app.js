@@ -148,6 +148,10 @@ function initSettings (args) {
         events.postSave = function (req, res, args, next) {next()};
     if (!events.hasOwnProperty('preList'))
         events.preList = function (req, res, args, next) {next()};
+    if (!events.hasOwnProperty('preListData'))
+        events.preListData = function (req, res, args, results, next) {next()};
+    if (!events.hasOwnProperty('preEditView'))
+        events.preEditView = function (req, res, args, data, next) {next()};
     args.events = events;
 
 

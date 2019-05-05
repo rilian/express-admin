@@ -35,10 +35,18 @@ function action (req, name) {
 
 exports.get = function (req, res, next) {
     var args = getArgs(req, res);
+    var events = res.locals._admin.events;
 
     editview.getTypes(args, function (err, data) {
         if (err) return next(err);
-        render(req, res, next, data, args);
+        async.series([
+            events.preEditView.bind(events, req, res, args, data),
+            function(asyncNext){
+                render(req, res, next, data, args);
+            }
+        ], function (err) {
+            console.log('err is occurred: ', err)
+        });
     });
 }
 
