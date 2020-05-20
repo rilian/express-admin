@@ -11,7 +11,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     multipart = require('connect-multiparty'),
     cookieParser = require('cookie-parser'),
-    session = require('express-session'),
+    // session = require('express-session'),
     cookieSession = require('cookie-session')
     csrf = require('csurf'),
     methodOverride = require('method-override'),
@@ -78,12 +78,14 @@ function initDatabase (args, done) {
         function (done) {
             schema.getData(client, function (err, data) {
                 if (err) return done(err);
-                // write back the settings
-                var fpath = path.join(args.dpath, 'settings.json'),
-                    updated = settings.refresh(args.settings, data);
-                fs.writeFileSync(fpath, JSON.stringify(updated, null, 4), 'utf8');
 
-                args.settings = updated;
+                // UNYTE PATCH. Uncomment if you need to recreate settins file
+                // // write back the settings
+                // var fpath = path.join(args.dpath, 'settings.json'),
+                //     updated = settings.refresh(args.settings, data);
+                // fs.writeFileSync(fpath, JSON.stringify(updated, null, 4), 'utf8');
+
+                // args.settings = updated;
                 done();
             });
         }
@@ -245,8 +247,8 @@ function initServer (args) {
         res.locals._admin = args;
 
         // personal settings.json
-        if (req.session != null 
-            && req.session.user 
+        if (req.session != null
+            && req.session.user
             && req.session.user.dir != null
             && req.session.user.dir.length > 0) {
 
@@ -256,7 +258,7 @@ function initServer (args) {
                 res.locals._admin.settings = require(user_settings);
             }
         }
-        
+
         // i18n
         var lang = req.cookies.lang || 'en';
         res.cookie('lang', lang, {path: '/', maxAge: 900000000});

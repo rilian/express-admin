@@ -56,7 +56,8 @@ exports.login = function (req, res) {
         }
         req.session.user = user
         // console.log('>>>>>>>>>>>> creating user on session cookie: ', req.session.user)
-        res.redirect('/');
+        // UNYTE PATCH
+        res.redirect(res.locals.root);
         // Regenerate session when signing in
         // to prevent fixation
         // req.session.regenerate(function (err) {
