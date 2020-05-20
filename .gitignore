@@ -16,7 +16,6 @@ node_modules
 public/upload
 coverage
 .idea
-package-lock.json
 
 config.json
 custom.json
